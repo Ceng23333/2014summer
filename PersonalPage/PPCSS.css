@@ -58,6 +58,10 @@
 	position:absolute;
 	color:#666;
 }
+.PP_Main_Left_Name a{
+	text-decoration:none;
+	color:#666;
+}
 .PP_Main_Left_hline1 {
 	z-index:1000;
 	background-color: #888;
