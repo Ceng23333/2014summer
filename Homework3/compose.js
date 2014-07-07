@@ -15,8 +15,6 @@ var composingDocOnMousemove=function(e){
   	if (doc.style.cursor=='move'){
    		DragingDiv.style.left = e.pageX+ox+'px';
    		DragingDiv.style.top = e.pageY+oy+'px';
-   		DragingDiv.style.right = (DragingDiv.offsetLeft+parseInt($(this).css('width')))+'px';	
-   		DragingDiv.style.bottom = (DragingDiv.offsetTop+parseInt($(this).css('height')))+'px';
   	}else{
   		if ((ob-e.pageY>heightfloor)&&(doc.style.cursor=='n-resize'||doc.style.cursor=='ne-resize'||doc.style.cursor=='nw-resize')){
 			DragingDiv.style.height=(ob-e.pageY)+'px';
@@ -94,9 +92,9 @@ var composingDragingdivOnMouseout=function(){
 	this.style.cursor='default';
 }
 
-$('.standord-nav').prepend('<li><a id=compose_start href=javascript:oncomposing();>重新排版</a></li>');
-$('.standord-nav').prepend('<li><a id=compose_cancel style=visibility:hidden; href=javascript:cancelcomposing();>取消排版</a></li>');
-$('.standord-nav').prepend('<li><a id=compose_save style=visibility:hidden; href=javascript:savecomposing();>保存排版</a></li>');
+$('.standord-nav').prepend('<li><a id=compose_start href=javascript:oncomposing();>自定义布局</a></li>');
+$('.standord-nav').prepend('<li><a id=compose_cancel style=visibility:hidden; href=javascript:cancelcomposing();>取消布局</a></li>');
+$('.standord-nav').prepend('<li><a id=compose_save style=visibility:hidden; href=javascript:savecomposing();>保存布局</a></li>');
 
 
 var backup;
