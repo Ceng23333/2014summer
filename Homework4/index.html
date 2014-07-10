@@ -1,0 +1,33 @@
+<!Document html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+<script type="text/javascript" src="js/coverflow.js"></script>
+<link rel="stylesheet" type="text/css" href="css/coverflow.css">
+</head>
+<body>
+	<div id='coverflow'>
+		<script type="text/javascript">
+			URL='file:///Users/user/Documents/大二小学期/Web前端技术/Homework4/image/';
+			function showImage(data){
+				console.log(data);
+				var obj=JSON.parse(data);
+				for(i=0;i<obj.imagelist.length;i++){
+					//console.log(imagelist[i]);
+					var img=document.createElement('img');
+					img.id='coverflow_img_'+i;
+					img.src=URL+obj.imagelist[i].src;
+					document.getElementById('coverflow').appendChild(img);
+				}
+			}
+			$.ajax({
+				url:URL+'imagelist.json',
+				type:'get',
+				async:true,
+				success:showImage
+			})
+		</script>
+	</div>
+</body>
+</html>
