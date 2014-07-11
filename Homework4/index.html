@@ -5,29 +5,119 @@
 <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
 <script type="text/javascript" src="js/coverflow.js"></script>
 <link rel="stylesheet" type="text/css" href="css/coverflow.css">
+<link rel="stylesheet" type="text/css" href="css/comment.css">
 </head>
 <body>
 	<div class='wrap'>
+	<div class='coverflow_wrap'>
 	<div id='coverflow'>
 		<script type="text/javascript">
-			URL='http://Kira23333.github.io/Homework4/image/';
+			var URL='Kira23333.githut.io/Homework4';
 			function showImage(data){
-				console.log(data);
+				//console.log(data);
 				for(i=0;i<data.imagelist.length;i++){
 					//console.log(imagelist[i]);
 					var img=document.createElement('img');
 					img.id='coverflow_img_'+i;
-					img.src=URL+data.imagelist[i].src;
+					img.src=URL+'/image/'+data.imagelist[i].src;
 					document.getElementById('coverflow').appendChild(img);
 				}
 				docoverflow();
 			}
 			$.ajax({
-				url:URL+'imagelist.json',
+				url:URL+'/image/imagelist.json',
 				type:'get',
 				async:true,
 				success:showImage
 			})
+		</script>
+	</div>
+	</div>
+	<div id='commentlist'>
+		<h3 id='totalcomments'></h3>
+		<script type="text/javascript">
+			var aheight=35;
+			var awidth=35;
+			function showComment(data){
+				//console.log(data);
+				var dataCount=data.commentlist.length;
+				document.getElementById('commentlist').innerHTML='';
+				var commentheader=document.createElement('div');
+				commentheader.className='commentheader';
+				var totalcomments=document.createElement('h3');
+				totalcomments.id='totalcomments';
+				totalcomments.innerHTML='共'+dataCount+'条评论';
+				commentheader.appendChild(totalcomments);
+				var pageSize=10;
+				var pageCount=parseInt((dataCount-1)/pageSize)+1;
+				var pageIndex=sessionStorage.pageIndex;
+				if (!(pageIndex>=0&&pageIndex<pageCount)) pageIndex=0;
+				var pageCountrol=document.createElement('span');
+				pageCountrol.className='pageControl';
+				function appendPageControl(id,text){
+					if(id==pageIndex){
+						pageCountrol.innerHTML+='<font class="button" color="#C0C0C0">'+text+'</font>';
+					}else {
+						var a=document.createElement('a');
+						a.href='javascript:;';
+						a.id='gotoPage'+id;
+						a.className='gotoPage';
+						a.innerHTML+='<font class="button" color="#C0C0C0">'+text+'</font>';
+						pageCountrol.appendChild(a);
+					}
+				}
+				//console.log(pageIndex);
+				appendPageControl(0,'首页');
+				for(i=0;i<pageCount;i++){
+					appendPageControl(i,i+1+'');
+				}
+				appendPageControl(pageCount-1,'末页');
+				commentheader.appendChild(pageCountrol);
+				document.getElementById('commentlist').appendChild(commentheader);
+
+				for (i=pageIndex*pageSize;i<(pageIndex+1)*pageSize&&i<dataCount;i++){
+					var div=document.createElement('div');
+					div.className='comment_wrap';
+					div.id='comment_wrap_'+i;
+					var divleft=document.createElement('div');
+					divleft.className='comment_left';
+					var avatar=document.createElement('img');
+					avatar.src=URL+'/comment/'+data.commentlist[i].avatarsrc;
+					avatar.className='avatar';
+					avatar.height=aheight;
+					avatar.width=awidth;
+					divleft.appendChild(avatar);
+					var divright=document.createElement('div');
+					divright.className='comment_right';
+					var h4=document.createElement('h4');
+					h4.innerHTML='<b>'+data.commentlist[i].user+'</b> 在 '+data.commentlist[i].date;
+					divright.appendChild(h4);
+					var p=document.createElement('p');
+					p.innerHTML=data.commentlist[i].content;
+					p.class='comment_content';
+					divright.appendChild(p);
+					div.appendChild(divleft);
+					div.appendChild(divright);
+					document.getElementById('commentlist').appendChild(div);
+				}
+			}
+			$.ajax({
+				url:URL+'/comment/commentlist.json',
+				type:'get',
+				async:true,
+				success:showComment
+			});
+			function gotoPage(value) {
+    				pageIndex = parseInt(value);
+    				sessionStorage.pageIndex=pageIndex;
+    				$.ajax({
+      				url:URL+'/comment/commentlist.json',
+					type:'get',
+					async:true,
+					success:showComment
+  				});
+  			}
+  			$('.gotoPage').live('click',function(){gotoPage(this.id.substr(8));});
 		</script>
 	</div>
 	</div>

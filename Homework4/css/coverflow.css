@@ -13,16 +13,14 @@
 	left:490px;
 	height:350px;
 	width:40000px;
+	display: block;
 }
-#coverflow img:hover{
-	opacity: 1.0;
-	-webkit-transform: translate(0,5px);
-}
-div.wrap{
+div.coverflow_wrap{
 	height: 500px; 
-	width: 1200px; 
-	left:10px;
+	width: 98%; 
+	left:1%;
 	border: 2px solid #999;
 	overflow: hidden; 
 	position: relative;
+	background-image: url(../bg.png);
 }

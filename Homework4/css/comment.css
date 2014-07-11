@@ -1,0 +1,74 @@
+#totalcomments{
+	font-size: 20px;
+	display: inline;
+	position: relative;
+	left: 0;
+	margin-left: 10px;
+}
+#commentlist{
+	border: #666 1px solid;
+	padding: 3px;
+	width: 80%;
+	left: 10%;
+	top:30px;
+	height: 1111px;
+	overflow: visible;
+	position: relative;
+	background-color: #293033;
+	color: #bbb;
+}
+.comment_wrap{
+	margin: 20px 0 0px 10px;
+	clear: both;
+	padding-bottom: 5px;
+	border-bottom: #D7D7D7 1px dotted;
+}
+.comment_wrap:after{
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.comment_left{
+	width: 80px;
+	padding-top: 2px;
+	float: left;
+}
+.comment_left img{
+	position: relative;
+	left: 20px;
+	top: 10px;
+}
+.comment_right{
+	max-width: calc(100% - 62px);
+	float: left;
+	padding-left: 15px;
+}
+.comment_right h4{
+	font-size: 12px !important;
+	text-transform: none;
+	padding: 0;
+	font-weight: normal;
+}
+.commentheader{
+	border-bottom: #D7D7D7 2px solid;
+	margin-top: 20px;
+	height: 20px;
+}
+.pageControl{
+	margin-top: 4px;
+	font-size: 12px;
+	float: right;
+	position: relative;
+	right: 10px;
+}
+.button{
+	padding: 1px;
+	border: #999 1px outset;
+	margin-left: 9px;
+	background-color: rgba(147, 114, 55, 0.64);
+}
+body{
+	font-family: 'Myriad Pro',Helvetica,Arial,sans-serif,'微软雅黑';
+}
