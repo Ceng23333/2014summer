@@ -4,7 +4,6 @@
 	width: 300px;
 	float: left;
 	position: relative;
-	display: inline;
 	margin:5px;
 	border: 1px solid #999;
 }
@@ -14,6 +13,10 @@
 	left:490px;
 	height:350px;
 	width:40000px;
+}
+#coverflow img:hover{
+	opacity: 1.0;
+	-webkit-transform: translate(0,5px);
 }
 div.wrap{
 	height: 500px; 

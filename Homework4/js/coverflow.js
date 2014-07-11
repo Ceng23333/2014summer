@@ -1,8 +1,8 @@
 var midimg=0;
 var gap=260;
-var visiblenumber=9;
+var visiblenumber=12;
 var unitopacity=1.0/visiblenumber;
-var animateDuration=300;
+var animateDuration=200;
 var goleft=function (Eimg,id,initialmid,finalmid,time){
 	console.log(id+' '+initialmid+' '+finalmid+' '+time);
 	$(Eimg).animate({'opacity':1-Math.abs(finalmid-id)*unitopacity},animateDuration);

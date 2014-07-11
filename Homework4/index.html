@@ -15,7 +15,7 @@
 				console.log(data);
 				for(i=0;i<data.imagelist.length;i++){
 					//console.log(imagelist[i]);
-					img=document.createElement('img');
+					var img=document.createElement('img');
 					img.id='coverflow_img_'+i;
 					img.src=URL+data.imagelist[i].src;
 					document.getElementById('coverflow').appendChild(img);
