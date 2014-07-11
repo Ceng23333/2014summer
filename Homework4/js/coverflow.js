@@ -10,7 +10,9 @@ var midtransform_hover='matrix(1, 0, 0, 1, 0, -10) scale(1.5)';
 var lefttransform_hover='matrix(1, -0.2, 0, 1, 0, -10) scale(1)';
 var righttransform_hover='matrix(1, 0.2, 0, 1, 0, -10) scale(1)';
 var Interval;
-var IntervalTime=10000;
+var IntervalTime=100;
+var trigglecount=100;
+var count=0;
 
 var goleft=function (Eimg,id,initialmid,finalmid,time){
 	//console.log(id+' '+initialmid+' '+finalmid+' '+time);
@@ -100,6 +102,7 @@ var goright=function (Eimg,id,initialmid,finalmid,time){
 }
 
 var move=function(ID){
+	count=0;
 	var id;
 	if (typeof ID=='number')id=ID;
 	else id=parseInt(this.id.substr(14));
@@ -162,5 +165,5 @@ function docoverflow(){
 		//console.log(Eimg[i].onclick);
 	}
 	if (parseInt(localStorage.midimg)!=NaN) move(parseInt(localStorage.midimg));
-	Interval=window.setInterval(function(){move(midimg+1);},IntervalTime);
+	Interval=window.setInterval(function(){count++;if (count>trigglecount) move(midimg+1);},IntervalTime);
 }
