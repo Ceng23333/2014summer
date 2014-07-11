@@ -5,7 +5,6 @@ var unitopacity=1.0/visiblenumber;
 var animateDuration=300;
 var goleft=function (Eimg,id,initialmid,finalmid,time){
 	console.log(id+' '+initialmid+' '+finalmid+' '+time);
-	$(Eimg).css('z-index',9999-Math.abs(finalmid-id));
 	$(Eimg).animate({'opacity':1-Math.abs(finalmid-id)*unitopacity},animateDuration);
 
 	if (id<finalmid) {
@@ -56,7 +55,6 @@ var goleft=function (Eimg,id,initialmid,finalmid,time){
 
 
 var goright=function (Eimg,id,initialmid,finalmid,time){
-	$(Eimg).css('z-index',9999-Math.abs(finalmid-id));
 	$(Eimg).animate({'opacity':1-Math.abs(finalmid-id)*unitopacity},animateDuration);
 	if (id<finalmid) {
 		$(Eimg).css({'-webkit-transition':'all '+time+'ms','-webkit-transform':'matrix(1, -0.2, 0, 1, 0, 0) scale(1)'});
@@ -98,11 +96,13 @@ var move=function(){
 	console.log(id);
 	if (id>midimg){
 		var d=animateDuration/(id-midimg);
+		for(i=0;i<N;i++) $(Eimg[i]).css('z-index',9999-Math.abs(id-i));
 		$(Ecoverflow).animate({left:'-='+50*(id-midimg)+'px'},animateDuration);
 		for(i=0;i<N;i++) goleft(Eimg[i],i,midimg,id,d);
 		midimg=id;
 	}else if(id<midimg){
 		var d=animateDuration/(midimg-id);
+		for(i=0;i<N;i++) $(Eimg[i]).css('z-index',9999-Math.abs(id-i));
 		$(Ecoverflow).animate({left:'+='+50*(midimg-id)+'px'},animateDuration);
 		for(i=0;i<N;i++) goright(Eimg[i],i,midimg,id,d);
 		midimg=id;
