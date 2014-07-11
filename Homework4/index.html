@@ -7,19 +7,20 @@
 <link rel="stylesheet" type="text/css" href="css/coverflow.css">
 </head>
 <body>
+	<div class='wrap'>
 	<div id='coverflow'>
 		<script type="text/javascript">
-			URL='file:///Users/user/Documents/大二小学期/Web前端技术/Homework4/image/';
+			URL='http://Kira23333.github.io/Homework4/image/';
 			function showImage(data){
 				console.log(data);
-				var obj=JSON.parse(data);
-				for(i=0;i<obj.imagelist.length;i++){
+				for(i=0;i<data.imagelist.length;i++){
 					//console.log(imagelist[i]);
-					var img=document.createElement('img');
+					img=document.createElement('img');
 					img.id='coverflow_img_'+i;
-					img.src=URL+obj.imagelist[i].src;
+					img.src=URL+data.imagelist[i].src;
 					document.getElementById('coverflow').appendChild(img);
 				}
+				docoverflow();
 			}
 			$.ajax({
 				url:URL+'imagelist.json',
@@ -28,6 +29,7 @@
 				success:showImage
 			})
 		</script>
+	</div>
 	</div>
 </body>
 </html>
