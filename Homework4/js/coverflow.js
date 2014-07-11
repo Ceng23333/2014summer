@@ -93,6 +93,7 @@ var goright=function (Eimg,id,initialmid,finalmid,time){
 var move=function(){
 	console.log(Ecoverflow);
 	var id=parseInt(this.id.substr(14));
+	$(Eimg[id]).css('z-index',9999);
 	console.log(id);
 	if (id>midimg){
 		var d=animateDuration/(id-midimg);
